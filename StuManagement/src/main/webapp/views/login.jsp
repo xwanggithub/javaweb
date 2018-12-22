@@ -18,6 +18,34 @@ $(function(){
 });
 });
 </script>
+<script type="text/javascript">
+function checkLogin(){
+	var userName = document.getElementsByName("username")[0].value;
+	var passwd = document.getElementsByName("password")[0].value;
+	var verCode = document.getElementsByName("verCode")[0].value;
+	if(userName == ""){
+		alert("用户名不能为空！");
+		return false;
+	}
+	if(passwd == ""){
+		alert("用户密码不能为空！");
+		return false;
+	}
+	if(verCode == ""){
+		alert("验证码不能为空！");
+		return false;
+	}
+	
+	document.getElementById("loginForm").submit();
+}
+
+function changeImg(){
+    var verCodeImg = document.getElementById("verCodeImg"); 
+    verCodeImg.src = "/StuManagement/authImage?date=" + new Date();
+} 
+
+
+</script>
 <body>
 	<div id="login_top">
 		<div id="welcome">
@@ -28,7 +56,7 @@ $(function(){
 	<div id="login_center">
 		<div id="login_area">
 			<div id="login_form">
-				<form action="/StuManagement/doLogin?dm=login" method="post">
+				<form action="/StuManagement/doLogin?dm=login" method="post" id="loginForm">
 					<div id="login_tip">
 						登录&nbsp;&nbsp;Login
 					</div>
@@ -41,11 +69,18 @@ $(function(){
 						<input type="checkbox" checked name="user" value="user" id="user">用户
 					</div>
 					<div id="btn_area">
-						<input type="submit" name="submit" id="sub_btn" value="登&nbsp;&nbsp;录">&nbsp;&nbsp;
-						<input type="text" class="verify">
-						<img src="/StuManagement/images/login/verify.png" alt="" width="80" height="40">
+						<!-- <input type="submit" name="submit" id="sub_btn" value="登&nbsp;&nbsp;录">&nbsp;&nbsp; -->
+						<input type="button" class="loginbtn" value="登录" onclick="checkLogin();" id="sub_btn"/>
+						
+						<input type="text" name="verCode" class="verify">
+						<span class="yzm">
+						<a href="#" onclick="changeImg()">
+						<img src="/StuManagement/authImage" id="verCodeImg"/>
+						</a>
+						</span>
+			
 						<br>
-						<input type="checkbox" name="auto" id="auto" value="1">下次自动登录？
+						<input type="checkbox" name="auto" id="auto" value="1">记住密码？
 					</div>
 				</form>
 			</div>
