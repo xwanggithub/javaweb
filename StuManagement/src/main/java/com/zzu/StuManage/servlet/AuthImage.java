@@ -14,13 +14,6 @@ import com.zzu.StuManage.util.VerifyCodeUtils;
 
 
 
-/**
- * @Description:TODO
- * @Company  郑州兴唐IT教育
- * @author 王滔
- * @email 675475017@qq.com
- * @date：2017年5月31日下午6:39:42
- */
 @WebServlet("/authImage")
 public class AuthImage extends HttpServlet{
 	
